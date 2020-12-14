@@ -1,0 +1,9 @@
+*.umap filter=lfs diff=lfs merge=lfs -text
+**/Textures/** filter=lfs diff=lfs merge=lfs -text
+**/Meshes/** filter=lfs diff=lfs merge=lfs -text
+**/StarterContent/** filter=lfs diff=lfs merge=lfs -text
+
+**/BelicaRetarget/** filter=lfs diff=lfs merge=lfs -text
+**/GrayStoneRetarget/** filter=lfs diff=lfs merge=lfs -text
+**/ThirdPersonAnimations/** filter=lfs diff=lfs merge=lfs -text
+**/StartContentRetarget/** filter=lfs diff=lfs merge=lfs -text

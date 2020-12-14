@@ -72,3 +72,13 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+**/BelicaRetarget/**
+**/GrayStoneRetarget/**
+**/ThirdPersonAnimations/**
+**/StartContentRetarget/**
+
+**/Blade_BlackKnight/**
+!**/Blade_BlackKnight/Sword_BP.*
+
+**/Shapes/**
