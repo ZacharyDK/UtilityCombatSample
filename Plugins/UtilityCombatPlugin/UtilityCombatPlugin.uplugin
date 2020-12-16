@@ -8,13 +8,13 @@
 	"CreatedBy": "Zachary Kolansky",
 	"CreatedByURL": "",
 	"DocsURL": "https://docs.google.com/document/d/1XkaUs4PwrAyDM_PV1cD-ulRLw5Ykb_6LmlaFsxnZIcQ/edit?usp=sharing",
-	"MarketplaceURL": "com.epicgames.launcher: //ue/marketplace/product/4f33ff6cf1494c3bbee3b0ae3af30ef5",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/4f33ff6cf1494c3bbee3b0ae3af30ef5",
 	"SupportURL": "",
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"EngineVersion": "4.25.4",
+	"EngineVersion": "4.26.0",
 	"Modules": [
 		{
 			"Name": "UtilityCombatPlugin",

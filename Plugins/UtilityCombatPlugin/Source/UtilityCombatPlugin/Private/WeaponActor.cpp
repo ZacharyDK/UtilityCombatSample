@@ -38,10 +38,10 @@ void AWeaponActor::GetLifetimeReplicatedProps(TArray < class FLifetimeProperty >
 
 UNetConnection * AWeaponActor::GetNetConnection() const 
 {
-    
-    if(AActor* Owner = GetAttachParentActor())
+    AActor* AttachOwner = GetAttachParentActor();
+    if(AttachOwner)
     {
-        return Owner->GetNetConnection();
+        return AttachOwner->GetNetConnection();
     }
 
     return Super::GetNetConnection();
