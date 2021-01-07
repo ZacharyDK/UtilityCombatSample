@@ -806,7 +806,7 @@ void UWeaponManager::SetWeaponVisibility(bool NewWeaponVisibility,AWeaponActor* 
 void UWeaponManager::SetWeaponVisibilityMulticast_Implementation(bool NewWeaponVisibility,AWeaponActor* InputWeaponActor)
 {
 
-	if(IsWeaponVisible(InputWeaponActor) == NewWeaponVisibility)
+	if(!InputWeaponActor || IsWeaponVisible(InputWeaponActor) == NewWeaponVisibility)
 	{
 		return;
 	}
