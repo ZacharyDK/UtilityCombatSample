@@ -18,12 +18,7 @@ UMeleeMontageComponent::UMeleeMontageComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 	SetIsReplicated(true);
 	
-	AWeaponActor* OwnerAsWeapon = Cast<AWeaponActor>(GetOwner());
-	if(OwnerAsWeapon)
-	{
-		OwnerAsWeapon->OnWeaponEquipped.AddUniqueDynamic(this,&UMeleeMontageComponent::Initialize);
-		//WeaponComponent needs to re-check for Owner Variables when its Equipped.
-	}
+
 }
 
 
@@ -31,6 +26,14 @@ UMeleeMontageComponent::UMeleeMontageComponent()
 void UMeleeMontageComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	AWeaponActor* OwnerAsWeapon = Cast<AWeaponActor>(GetOwner());
+	if(OwnerAsWeapon)
+	{
+		OwnerAsWeapon->OnWeaponEquipped.AddUniqueDynamic(this,&UMeleeMontageComponent::Initialize);
+		//WeaponComponent needs to re-check for Owner Variables when its Equipped.
+	}
+	
 	Initialize();
 	// ...
 	
@@ -45,7 +48,7 @@ void UMeleeMontageComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void UMeleeMontageComponent::GetLifetimeReplicatedProps(TArray < class FLifetimeProperty > & OutLifetimeProps) const
 {
-
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 }
 
 // Called every frame
