@@ -7,3 +7,4 @@
 **/GrayStoneRetarget/** filter=lfs diff=lfs merge=lfs -text
 **/ThirdPersonAnimations/** filter=lfs diff=lfs merge=lfs -text
 **/StartContentRetarget/** filter=lfs diff=lfs merge=lfs -text
+**/Shapes/** filter=lfs diff=lfs merge=lfs -text

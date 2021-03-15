@@ -78,7 +78,7 @@ DerivedDataCache/*
 #**/ThirdPersonAnimations/**
 #**/StartContentRetarget/**
 
-**/Blade_BlackKnight/**
-!**/Blade_BlackKnight/Sword_BP.*
+#**/Blade_BlackKnight/**
+#!**/Blade_BlackKnight/Sword_BP.*
 
-**/Shapes/**
+#**/Shapes/**
