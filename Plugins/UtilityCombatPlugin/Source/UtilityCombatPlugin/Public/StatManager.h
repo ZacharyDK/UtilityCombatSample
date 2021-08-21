@@ -344,10 +344,12 @@ public:
 	void SetStatBindings(UPARAM(ref) const TMap<FName,FStatBind>& InputStatBindings);
 
 	UFUNCTION( NetMulticast, Reliable, Category = StatBinding)
-	void SetStatBindingsMulticast(const TMap<FName,FStatBind>& InputStatBindings);
+	void SetStatBindingsMulticast(const TArray<FName>& Names, const TArray<FStatBind>& StatBinds);
+	//void SetStatBindingsMulticast(const TMap<FName,FStatBind>& InputStatBindings);
 
 	UFUNCTION(Server,Reliable, Category = StatBinding)
-	void SetStatBindingsServer(const TMap<FName,FStatBind>& InputStatBindings);
+	void SetStatBindingsServer(const TArray<FName>& Names, const TArray<FStatBind>& StatBinds);
+	//void SetStatBindingsServer(const TMap<FName,FStatBind>& InputStatBindings);
 
 
 	UFUNCTION(NetMulticast,Reliable, Category = Status)
@@ -646,10 +648,12 @@ public:
 	void SetStatDictionary(UPARAM(ref) const TMap<FName,FStat>& InputStatDictionary);
 
 	UFUNCTION( NetMulticast, Reliable, Category = Utility)
-	void SetStatDictionaryMulticast(const TMap<FName,FStat>& InputStatDictionary);
+	void SetStatDictionaryMulticast(const TArray<FName>& Names, const TArray<FStat>& Stats);
+	//void SetStatDictionaryMulticast(const TMap<FName,FStat>& InputStatDictionary);
 
 	UFUNCTION(Server,Reliable, Category = Utility)
-	void SetStatDictionaryServer(const TMap<FName,FStat>& InputStatDictionary);
+	void SetStatDictionaryServer(const TArray<FName>& Names, const TArray<FStat>& Stats);
+	//void SetStatDictionaryServer(const TMap<FName,FStat>& InputStatDictionary);
 
 
 

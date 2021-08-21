@@ -436,28 +436,48 @@ void UStatManager::SetStatBindings( const TMap<FName,FStatBind>& InputStatBindin
 	}
 	
 
-	
+	TArray<FName> KeyArray = {};
+	TArray<FStatBind> ValueArray = {};
+
+	InputStatBindings.GenerateKeyArray(KeyArray);
+	InputStatBindings.GenerateValueArray(ValueArray);
 
 	if(!OwnerActor->HasAuthority() && OwnerActor->GetLocalRole() == ROLE_AutonomousProxy )
 	{
-		SetStatBindingsServer(InputStatBindings); 
+		//SetStatBindingsServer(InputStatBindings); 
+		SetStatBindingsServer(KeyArray,ValueArray); 
 	}
 	else if(OwnerActor->HasAuthority())
 	{
-		SetStatBindingsMulticast(InputStatBindings);
+		//SetStatBindingsMulticast(InputStatBindings);
+		SetStatBindingsMulticast(KeyArray,ValueArray);
 	}
 }
 
 
-void UStatManager::SetStatBindingsMulticast_Implementation(const TMap<FName,FStatBind>& InputStatBindings)
+void UStatManager::SetStatBindingsMulticast_Implementation(const TArray<FName>& Names, const TArray<FStatBind>& StatBinds)
 {
-	StatBindings = InputStatBindings;
+	//StatBindings = InputStatBindings;
+	StatBindings.Empty(0);
+
+	int32 i = 0;
+
+	for (const FName& Key : Names)
+	{
+		if(i < Names.Num() && i < StatBinds.Num())
+		{
+			StatBindings.Add(Names[i],StatBinds[i]);
+		}
+		
+		i++;
+	}
 }
 
 
-void UStatManager::SetStatBindingsServer_Implementation(const TMap<FName,FStatBind>& InputStatBindings)
+void UStatManager::SetStatBindingsServer_Implementation(const TArray<FName>& Names, const TArray<FStatBind>& StatBinds)
 {
-	SetStatBindingsMulticast(InputStatBindings);
+	//SetStatBindingsMulticast(InputStatBindings);
+	SetStatBindingsMulticast(Names,StatBinds);
 }
 
 //STATUS
@@ -1174,29 +1194,47 @@ void UStatManager::SetStatDictionary(const TMap<FName,FStat>& InputStatDictionar
 		return;
 	}
 	
+	TArray<FName> KeyArray = {};
+	TArray<FStat> ValueArray = {};
 
+	InputStatDictionary.GenerateKeyArray(KeyArray);
+	InputStatDictionary.GenerateValueArray(ValueArray);
 	
 
 	if(!OwnerActor->HasAuthority() && OwnerActor->GetLocalRole() == ROLE_AutonomousProxy )
 	{
-		SetStatDictionaryServer(InputStatDictionary); 
+		SetStatDictionaryServer(KeyArray,ValueArray); 
 	}
 	else if(OwnerActor->HasAuthority())
 	{
-		SetStatDictionaryMulticast(InputStatDictionary);
+		SetStatDictionaryMulticast(KeyArray,ValueArray);
 	}
 }	
 
 
-void UStatManager::SetStatDictionaryMulticast_Implementation(const TMap<FName,FStat>& InputStatDictionary)
+void UStatManager::SetStatDictionaryMulticast_Implementation(const TArray<FName>& Names, const TArray<FStat>& Stats)
 {
-	StatDictionary = InputStatDictionary;
+	//StatDictionary = InputStatDictionary;
+	StatDictionary.Empty(0);
+
+	int32 i = 0;
+
+	for (const FName& Key : Names)
+	{
+		if(i < Names.Num() && i < Stats.Num())
+		{
+			StatDictionary.Add(Names[i],Stats[i]);
+		}
+		
+		i++;
+	}
 }
 
 
-void UStatManager::SetStatDictionaryServer_Implementation(const TMap<FName,FStat>& InputStatDictionary)
+void UStatManager::SetStatDictionaryServer_Implementation(const TArray<FName>& Names, const TArray<FStat>& Stats)
 {
-	SetStatDictionaryMulticast(InputStatDictionary);
+	//SetStatDictionaryMulticast(InputStatDictionary);
+	SetStatDictionaryMulticast(Names,Stats);
 }
 
 
