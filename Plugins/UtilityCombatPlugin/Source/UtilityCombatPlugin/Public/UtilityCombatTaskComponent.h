@@ -169,6 +169,7 @@ public:
 	Returns true if the task is not on Cooldown
 	Returns False if the task is on Cooldown
 	*/
+	UFUNCTION(BlueprintPure)
 	bool IsTaskReady();
 
 	
