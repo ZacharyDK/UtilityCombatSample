@@ -43,7 +43,8 @@ void UMeleeMontageComponent::BeginPlay()
 void UMeleeMontageComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	GetWorld()->GetTimerManager().ClearTimer(AutoFireHandle);
-	//GetWorld()->GetTimerManager().ClearTimer(BurstFireHandle);
+	GetWorld()->GetTimerManager().ClearAllTimersForObject(this); //Clears anonymous timer handles generated in PlayCollectionMontageSequence()
+
 	Super::EndPlay(EndPlayReason);
 }
 
@@ -161,6 +162,7 @@ bool UMeleeMontageComponent::CanPlayMontageData(const FMeleeMontageCollectionDat
 }
 
 
+
 TArray<TSoftObjectPtr<UAnimMontage>> UMeleeMontageComponent::GetMontageListFromCollection(UPARAM(ref)const TArray<FMeleeMontageCollectionData>& CollectionArray) const
 {
 	TArray<TSoftObjectPtr<UAnimMontage>> OutList = {};
@@ -208,8 +210,7 @@ void UMeleeMontageComponent::PlayCollectionMontage(const FMeleeMontageCollection
 
 	if(bPass)
 	{	
-		LastMontagePlayed = MontageCollectionData.SoftMontage.Get();
-		PlayMontage(MontageCollectionData.SoftMontage.Get(),MontageCollectionData.MontagePlayrate,MontageCollectionData.MontageStartSectionName);
+
 
 		if(MontageCollectionData.InterruptOtherMontages)
 		{
@@ -233,7 +234,50 @@ void UMeleeMontageComponent::PlayCollectionMontage(const FMeleeMontageCollection
 			}
 		}
 
+		//This should be here oopps.
+		LastMontagePlayed = MontageCollectionData.SoftMontage.Get();
+		PlayMontage(MontageCollectionData.SoftMontage.Get(),MontageCollectionData.MontagePlayrate,MontageCollectionData.MontageStartSectionName);
 	}
+}
+
+float UMeleeMontageComponent::PlayCollectionMontageSequence(UPARAM(ref) TArray<FMeleeMontageCollectionData>& Montages)
+{
+	float TimeSum = 0.0f;
+
+	for (const FMeleeMontageCollectionData& MontageCollection : Montages)
+	{
+		UAnimMontage* Mont= MontageCollection.SoftMontage.Get();
+		if(!Mont)
+		{
+			continue;
+		}
+		float Playrate = MontageCollection.MontagePlayrate;
+		if(Playrate <= 0.0f) //deal with divide by zero
+		{
+			Playrate = 1.0f;
+		}
+
+		float MontLength = Mont->SequenceLength;
+
+		float MontPlayTime = MontLength/Playrate;
+		
+		if(TimeSum <= 0.0f)
+		{
+			PlayCollectionMontage(MontageCollection);
+			TimeSum = TimeSum + MontPlayTime;
+			continue;
+		}
+
+		FTimerDelegate AnonDelegate;
+		AnonDelegate.BindUFunction(this,FName("PlayCollectionMontage"),MontageCollection);
+		
+		FTimerHandle AnonHandle;
+		WorldTimerManager->SetTimer(AnonHandle,AnonDelegate,TimeSum,false);
+
+		TimeSum = TimeSum + MontPlayTime;
+	
+	}
+	return TimeSum;
 }
 
 void UMeleeMontageComponent::PlayNextMontage()

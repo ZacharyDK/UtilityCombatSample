@@ -104,6 +104,14 @@ public:
 	//PROPERTY(VisibleAnywhere,Category=Automatic)
     FTimerHandle AutoFireHandle; //Set to the world's timer manager
 
+		
+	FTimerDelegate CleanUpDelegate; //Degates are bound to UFUNCTIONS
+
+	//PROPERTY(VisibleAnywhere,Category=Automatic)
+    FTimerHandle CleanUpHandle; //Set to the world's timer manager
+
+
+
 	/*
 	How frequently do we want PlayNextMontage() to fire when we are are auto swinging. (i.e mouse button down)
 	Note that I still check to see if cooldown is appropiate
@@ -111,6 +119,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Automatic)
 	float AutoSwingFireFrequency = 1.0f;
 	
+
 	/*
 	Time in seconds that must pass before this component can fire again.
 	*/
@@ -187,6 +196,7 @@ public:
 	bool CanPlayMontageData(const FMeleeMontageCollectionData& MontageCollectionData, bool& bPassCooldownCheck, bool& bPassGlobalBlackList, bool& bPassInternalBlackList) const;
 
 
+
 	UFUNCTION(BlueprintPure)
 	TArray<TSoftObjectPtr<UAnimMontage>> GetMontageListFromCollection(UPARAM(ref)const TArray<FMeleeMontageCollectionData>& CollectionArray) const;
 
@@ -210,6 +220,13 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = Montage)
 	void PlayCollectionMontage(UPARAM(ref) const FMeleeMontageCollectionData& MontageCollectionData);
+
+	/*
+	Plays a list of Montages one after another, in order
+	returns the total time
+	*/
+	UFUNCTION(BlueprintCallable, Category = Montage)
+	float PlayCollectionMontageSequence(UPARAM(ref) TArray<FMeleeMontageCollectionData>& Montages);
 
 	/*
 	Calls server RPC if the OwnerChar is a ROLE_AutonomousProxy
