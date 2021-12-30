@@ -223,10 +223,12 @@ public:
 
 	/*
 	Plays a list of Montages one after another, in order
-	returns the total time
+	returns the total time the sequence needs
+
+	MontageTimeEndAppend : How much time to change when the N+1 montage must wait to fire. Negative will make the N+1 montage fire MontageTimeEndAppend*N seconds earlier, while positive numbers will delay when the N+1 montage fires.
 	*/
 	UFUNCTION(BlueprintCallable, Category = Montage)
-	float PlayCollectionMontageSequence(UPARAM(ref) TArray<FMeleeMontageCollectionData>& Montages);
+	float PlayCollectionMontageSequence(UPARAM(ref) TArray<FMeleeMontageCollectionData>& Montages, float MontageTimeEndAppend = 0.0f);
 
 	/*
 	Calls server RPC if the OwnerChar is a ROLE_AutonomousProxy

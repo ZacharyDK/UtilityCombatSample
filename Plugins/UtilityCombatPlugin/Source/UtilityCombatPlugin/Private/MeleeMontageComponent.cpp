@@ -240,10 +240,10 @@ void UMeleeMontageComponent::PlayCollectionMontage(const FMeleeMontageCollection
 	}
 }
 
-float UMeleeMontageComponent::PlayCollectionMontageSequence(UPARAM(ref) TArray<FMeleeMontageCollectionData>& Montages)
+float UMeleeMontageComponent::PlayCollectionMontageSequence(UPARAM(ref) TArray<FMeleeMontageCollectionData>& Montages,float MontageTimeEndAppend )
 {
 	float TimeSum = 0.0f;
-
+	int32 i = 0;
 	for (const FMeleeMontageCollectionData& MontageCollection : Montages)
 	{
 		UAnimMontage* Mont= MontageCollection.SoftMontage.Get();
@@ -265,19 +265,24 @@ float UMeleeMontageComponent::PlayCollectionMontageSequence(UPARAM(ref) TArray<F
 		{
 			PlayCollectionMontage(MontageCollection);
 			TimeSum = TimeSum + MontPlayTime;
+			i++;
 			continue;
 		}
 
 		FTimerDelegate AnonDelegate;
 		AnonDelegate.BindUFunction(this,FName("PlayCollectionMontage"),MontageCollection);
 		
+		float CalcTimeAppend = MontageTimeEndAppend*i;
+
+		
+
 		FTimerHandle AnonHandle;
-		WorldTimerManager->SetTimer(AnonHandle,AnonDelegate,TimeSum,false);
+		WorldTimerManager->SetTimer(AnonHandle,AnonDelegate,TimeSum+CalcTimeAppend,false);
 
 		TimeSum = TimeSum + MontPlayTime;
-	
+		i++;
 	}
-	return TimeSum;
+	return TimeSum + MontageTimeEndAppend*i;
 }
 
 void UMeleeMontageComponent::PlayNextMontage()
