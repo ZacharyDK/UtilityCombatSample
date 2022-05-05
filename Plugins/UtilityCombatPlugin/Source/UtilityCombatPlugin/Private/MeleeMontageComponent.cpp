@@ -257,8 +257,9 @@ float UMeleeMontageComponent::PlayCollectionMontageSequence(UPARAM(ref) TArray<F
 			Playrate = 1.0f;
 		}
 
-		float MontLength = Mont->SequenceLength;
+		//float MontLength = Mont->SequenceLength;  Mont->SequenceLength is deprecated
 
+		float MontLength = Mont->GetPlayLength();
 		float MontPlayTime = MontLength/Playrate;
 		
 		if(TimeSum <= 0.0f)
