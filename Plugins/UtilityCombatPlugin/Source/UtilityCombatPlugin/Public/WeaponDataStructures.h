@@ -27,7 +27,7 @@ struct FWeaponData : public FTableRowBase
 
 	"" means no weapon class
 	*/
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = WeaponData)
 	FName WeaponType = FName("");
 
 	/*

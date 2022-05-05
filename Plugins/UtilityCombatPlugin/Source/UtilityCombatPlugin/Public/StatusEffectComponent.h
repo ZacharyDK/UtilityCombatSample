@@ -67,7 +67,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = StatusEffect)
 	float EffectPauseTime = 0.0f;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = StatusEffect)
 	class UStatManager* MasterStatManager = nullptr;
 
 
