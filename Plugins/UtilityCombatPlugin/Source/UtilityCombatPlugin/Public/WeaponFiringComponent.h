@@ -276,7 +276,7 @@ public:
 	UFUNCTION(Server,Reliable)
 	void FireLineTraceServer(const FVector StartLocation, const FRotator InitialRotation) const;
 
-	UFUNCTION(BlueprintCallabl, Category = Basic)
+	UFUNCTION(BlueprintCallable, Category = Basic)
 	void FirePattern();
 
 
