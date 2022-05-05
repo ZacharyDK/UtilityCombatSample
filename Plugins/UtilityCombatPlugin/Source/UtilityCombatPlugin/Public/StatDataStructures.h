@@ -32,13 +32,13 @@ struct FStat : public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
 	float Minimum = 0.0f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
 	float Maximum = 100.0f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
 	float CurrentValue = 0.0f;
 
 	FStat()
@@ -306,7 +306,7 @@ struct FStatusEffect : public FTableRowBase
     What the effect of a status effect is. Note that the action must be ModifyStat for it be handled 
     by the StatManager component. 
     */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffect)
     EEffectAction EffectAction = EEffectAction::ModifyStat;
 
     /*
@@ -317,21 +317,21 @@ struct FStatusEffect : public FTableRowBase
     No effect for ModifyPlayrate,ModifyCooldown,ModifyCastingCost.
     These actions are used change values in FSpellExecutionStruct
     */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffect)
     FName ActionName = FName("");
 
     /*
     How much to modify the Stat or ModifyPlayrate,ModifyCooldown,ModifyCastingCost. 
     No effect for FireProjectile,LaunchSelf.
     */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = StatusEffect)
     float Intensity = 0.0f;
 
     /*
     Apply this effect every X seconds. No effect if duration is set to zero.
 	Note that a multicast RPC is called for every X seconds.
     */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffect)
     float TickTime = 0.1f;
 
     /*
@@ -339,19 +339,19 @@ struct FStatusEffect : public FTableRowBase
     Negative Duration means the effect will last forever.
     Duration = 0 means the effect will not be applied
     */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffect)
     float Duration = 0.0f;
 
     /*
     Other clear conditions besides duration
     */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffect)
     TArray<EStatusClearCondition> ClearConditions = {};
 
     /*
     Visual Effects to apply when status effect has been started
     */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffect)
     FName VisualEffect = FName("");
 
     FStatusEffect()
@@ -379,19 +379,19 @@ struct FStatBind
 	The stat whose properties we will combine to.
 	(The Modifier)
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatBind)
 	FName NameOfStatBindingModifier = FName("");
 
 	/*
 	What aspect of the base stat do we modify?
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatBind)
 	EStatValueType Target = EStatValueType::CurrentValue;
 
 	/*
 	How do we modify the stat
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatBind)
 	EStatModificationOperation BindingOperation = EStatModificationOperation::Addition;
 
 	FStatBind()
@@ -451,22 +451,22 @@ struct FStatusEffectVisual : public FTableRowBase
 	GENERATED_BODY()
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FLinearColor Color1 = FLinearColor(0.0f,0.0f,0.0f,1.0f);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FLinearColor Color2 = FLinearColor(0.0f,0.0f,0.0f,1.0f);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	float MinEmission = 0.0f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	float MaxEmission = 0.0f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	float EmissionChangeSpeed = 0.0f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	float ColorChangeSpeed = 0.0f;
 
 	FStatusEffectVisual()
@@ -509,22 +509,22 @@ struct FStatusEffectVisualFNameParameters
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FName Color1ParameterName = FName("StatusColor1");
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FName Color2ParameterName = FName("StatusColor2");
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FName MinEmissionParameterName = FName("StatusMinEmission");
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FName MaxEmissionParameterName = FName("StatusMaxEmission");
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FName EmissionChangeSpeedParameterName = FName("StatusEmissionChangeSpeed");
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusVisual)
 	FName ColorChangeSpeedParameterName = FName("StatusColorChangeSpeed");
 
 	FStatusEffectVisualFNameParameters()
@@ -540,25 +540,25 @@ struct FStatusEffectSaveData
 {
 	GENERATED_BODY()
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffectSave)
 	FStatusEffect EffectData = FStatusEffect();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffectSave)
 	float Effector = 0.0f;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffectSave)
 	FName EffectName = FName("");
 
 	/*
 	GetWorld()->GetTimeSeconds() when the effect has started
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatusEffectSave)
 	float EffectStartTime = 0.0f;
 
 	/*
 	GetWorld()->GetTimeSeconds() when we saved the effect
 	*/
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = StatusEffectSave)
 	float EffectSaveTime = 0.0f;
 
 	FStatusEffectSaveData()
@@ -585,7 +585,7 @@ struct FWeaponSaveData
 {
 	GENERATED_BODY()
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 	TSubclassOf<class AWeaponActor> WeaponClass = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats)

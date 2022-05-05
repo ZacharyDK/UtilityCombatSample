@@ -25,13 +25,13 @@ struct FStatOperation
 {
 	GENERATED_BODY();
 	
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = StatOperation)
 	FName StatName = FName("");
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = StatOperation)
 	float Value = 0.0f;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = StatOperation)
 	EStatValueType ValueType = EStatValueType::CurrentValue;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)

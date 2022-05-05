@@ -58,10 +58,10 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = Equip)
 	FWeaponData WeaponData = FWeaponData();
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = Query)
 	bool HasFiringComponent();
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = Query)
 	bool HasMeleeComponent();
 
 	/*
@@ -88,14 +88,14 @@ public:
 	/*
 	Override this BP
 	*/
-	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent,BlueprintCallable,Category = Basic)
 	void FireWeapon();
 
 	/*
 	Override this BP
 	Useful if you want to stop firing behavior.
 	*/
-	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent,BlueprintCallable, Category = Basic)
 	void FireWeaponEnd();
 
 
@@ -114,7 +114,7 @@ public:
 	/*
 	Override this BP
 	*/
-	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent,BlueprintCallable, Category = Basic)
 	void ReloadWeapon();
 
 	/*

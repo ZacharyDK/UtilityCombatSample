@@ -103,7 +103,7 @@ public:
 	Removes all values associated with the key (of type FName) in CurrentVisualEffects
 	Then calls ApplyVisualEffect()
 	*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = Effects)
 	void RemoveVisualEffect(FName VisualEffectName);
 		
 };

@@ -34,7 +34,7 @@ struct FWeaponData : public FTableRowBase
 	Where on the weapon we want the sphere trace to start
 	during  MeleeDamage notify state
 	*/
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category = WeaponData)
 	FName WeaponDamageStartSocket = FName("");
 
 	
@@ -42,20 +42,20 @@ struct FWeaponData : public FTableRowBase
 	Where on the weapon we want the sphere trace to end
 	during  MeleeDamage notify state
 	*/
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = WeaponData)
 	FName WeaponDamageEndSocket = FName("");
 
 
 	
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = WeaponData)
 	float MeleeCapsuleTraceRadius = 30.0f;
 
     /*
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = WeaponData)
 	float ThreatCapsuleTraceRadius = 50.0f;
 
-    UPROPERTY(EditAnywhere,BlueprintReadWrite)
+    UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = WeaponData)
 	float WeaponThreatTraceDistance = 2000.0f;
     */
 	
@@ -74,28 +74,28 @@ struct FEquipData :  public FTableRowBase
 {
 	GENERATED_BODY()
 	
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = EquipData)
 	TSoftObjectPtr<UAnimMontage> SoftEquipMontage = nullptr;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = EquipData)
 	TSoftObjectPtr<UAnimMontage> SoftHolsterMontage = nullptr;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = EquipData)
 	float EquipPlayrate = 1.0f;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = EquipData)
 	float HolsterPlayrate = 1.0f;
 
 	/*
 	Where on the parent mesh do we attach the weapon when armed?
 	*/
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = EquipData)
 	FName ArmedSocket = FName();
 
 	/*
 	Where on the parent mesh do we attach the weapon when Holstered?
 	*/
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = EquipData)
 	FName HolsterSocket = FName();
 
 

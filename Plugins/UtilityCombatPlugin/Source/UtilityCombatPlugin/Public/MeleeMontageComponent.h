@@ -186,7 +186,7 @@ public:
 	Automatically called during Begin play
 	Cache's the OwnerActor, MeshComponent, Anim Instance
 	*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = Initialize)
 	void Initialize();
 
 	/*
@@ -197,14 +197,14 @@ public:
 
 
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = Query)
 	TArray<TSoftObjectPtr<UAnimMontage>> GetMontageListFromCollection(UPARAM(ref)const TArray<FMeleeMontageCollectionData>& CollectionArray) const;
 
 	/*
 	returns true if any montage is the list is playing,, false otherwise.
 	 Note that soft pointers must have already been loaded.
 	*/
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = Query)
 	bool IsMontageInListPlaying(UPARAM(ref) const  TArray<TSoftObjectPtr<UAnimMontage>>& MontageList) const;
 
 	

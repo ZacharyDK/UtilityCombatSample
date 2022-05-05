@@ -241,7 +241,7 @@ public:
 	FTimerManager* WorldTimerManager = nullptr;
 
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = Initialize)
 	void Initialize();
 
 	FRotator AddRandomSpreadToRotation(const FRotator InputRotation) const;

@@ -192,7 +192,7 @@ public:
 	Get and sets Owner variable.
 	Fills EquipDataDictionary from WeaponEquipData
 	*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = Initialize)
 	void Initialize();
 	
 	/*

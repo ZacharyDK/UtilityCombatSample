@@ -144,32 +144,33 @@ public:
 	AAIController* OwnerController = nullptr;
 
 
-	UFUNCTION(BlueprintCallable,BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable,BlueprintNativeEvent, Category = Basic)
 	float CalculateTaskScore(UUtilityAIManagerComponent* ManagerComponent);
 
 	/*
 	Returns true if this task can be interrupted by InterruptingTask
 	Returns false if this task cannot be interrupted by InterruptingTask
 	*/
+	UFUNCTION(BlueprintPure, Category = Query)
 	bool CanTaskBeInterrupted(UUtilityCombatTaskComponent* InterruptingTask);
 
 	/*
 	This is called whenever we begin this task
 	*/
-	UFUNCTION(BlueprintCallable,BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable,BlueprintNativeEvent, Category = Basic)
 	void EnterTask();
 
 	/*
 	This is called whenever we exit this task
 	*/
-	UFUNCTION(BlueprintCallable,BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable,BlueprintNativeEvent, Category = Basic)
 	void ExitTask();
 
 	/*
 	Returns true if the task is not on Cooldown
 	Returns False if the task is on Cooldown
 	*/
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = Query)
 	bool IsTaskReady();
 
 	

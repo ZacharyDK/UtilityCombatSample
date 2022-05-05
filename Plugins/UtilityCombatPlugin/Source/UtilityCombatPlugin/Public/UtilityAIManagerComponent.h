@@ -268,7 +268,7 @@ public:
 	/*
 	Call when the pawn is possessed
 	*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = Initialize)
 	void Initialize();
 
 	/*
@@ -284,7 +284,7 @@ public:
 	ChangeToBestTasks();
 
 	*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = Basic)
 	void DetermineBestTask();
 
 	/*
@@ -310,6 +310,6 @@ public:
 	/*
 	Call when the owner is possessed.
 	*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = Basic)
 	void SetMovementComponentPointers();
 };

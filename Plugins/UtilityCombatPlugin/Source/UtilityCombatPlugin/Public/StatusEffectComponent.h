@@ -37,17 +37,17 @@ public:
 
 
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = Basic)
 	FStatusEffect StatusEffect = FStatusEffect();
 
 	FTimerDelegate EffectDelegate; //Degates are bound to UFUNCTIONS
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = Timer)
     FTimerHandle EffectHandle; //Set to the world's timer manager
 
     FTimerDelegate DurationDelegate;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = Timer)
     FTimerHandle DurationHandle;
 
 	//Value that this Effect changes.
