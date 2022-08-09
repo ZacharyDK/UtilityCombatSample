@@ -395,6 +395,16 @@ void UWeaponFiringComponent::FirePattern()
 		
 		return;
 	}
+	else if(!bCanFire)
+	{
+		if(bShowDebugWarnings)
+		{
+			UE_LOG(LogTemp,Warning,TEXT("Can't Fire, bCanFire is % s "),  (bCanFire ? TEXT("true") : TEXT("false") ) )
+			UE_LOG(LogTemp,Warning,TEXT("Can't Fire, bPassTimingCheck is % s "),  (bPassTimingCheck ? TEXT("true") : TEXT("false") ) )
+			UE_LOG(LogTemp,Warning,TEXT("Can't Fire, bPassAmmoCheck is % s "),  (bPassAmmoCheck ? TEXT("true") : TEXT("false") ) )
+		}
+		return;
+	}
 
 	
 
@@ -474,6 +484,7 @@ void UWeaponFiringComponent::FirePattern()
 		ReloadWeapon(true,true);
 	}
 	
+	WorldTimeLastFired = GetWorld()->GetTimeSeconds();
 	OnWeaponFire.Broadcast();
 }
 
